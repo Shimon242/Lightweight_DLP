@@ -30,8 +30,17 @@ def encrypt_file(file_path):
         file_path
     ]
 
-    subprocess.run(command, check=True)
-    print(f"Encrypted: {file_path} -> {encrypted_file}")
+    try:
+        subprocess.run(command, check=True)
+
+        if os.path.exists(encrypted_file):
+            os.remove(file_path)
+            print(f"Encrypted and removed original: {file_path} -> {encrypted_file}")
+        else:
+            print(f"Encryption failed for {file_path}")
+
+    except subprocess.CalledProcessError as error:
+        print(f"Failed to encrypt {file_path}: {error}")
 
 def main():
     alerts = load_alerts()
