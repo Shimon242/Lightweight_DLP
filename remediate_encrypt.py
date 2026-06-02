@@ -2,8 +2,8 @@ import json
 import os
 import subprocess
 
-ALERT_FILE = "alerts/dlp_alerts.json"
-GPG_PASSWORD = "safe"
+ALERT_FILE = ""
+GPG_PASSWORD = ""
 
 def load_alerts():
     with open(ALERT_FILE, "r") as file:
